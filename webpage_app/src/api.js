@@ -1,7 +1,7 @@
 // API function to integrate with Open-Meteo Geocoding and Weather APIs
 // Reference: https://open-meteo.com/
 
-export async function searchCardNames(card) {
+export async function autocomplete(card) {
   const res = await fetch(
     `https://api.scryfall.com/cards/autocomplete?q=${card}`
   );
@@ -13,15 +13,15 @@ export async function searchCardNames(card) {
   return data.data || [];
 } 
 
-export async function fetchWeather(lat, lon) {
+export async function searchCards(search) {
   // Hardcode coordinates or use a simple free API.
   const res = await fetch(
-    `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true`
+    `https://api.scryfall.com/cards/search?q=${search}`
   );
 
   const data = await res.json();
 
   console.log(data);
 
-  return data.current_weather ?? "N/A";
+ return data.data || [];
 }
