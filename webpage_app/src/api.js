@@ -1,16 +1,16 @@
 // API function to integrate with Open-Meteo Geocoding and Weather APIs
 // Reference: https://open-meteo.com/
 
-export async function searchCity(city) {
+export async function searchCardNames(card) {
   const res = await fetch(
-    `https://geocoding-api.open-meteo.com/v1/search?name=${city}&count=10&language=en&format=json`
+    `https://api.scryfall.com/cards/autocomplete?q=${card}`
   );
 
   const data = await res.json();
 
   console.log(data);
 
-  return data.results || [];
+  return data.data || [];
 }
 
 export async function fetchWeather(lat, lon) {
