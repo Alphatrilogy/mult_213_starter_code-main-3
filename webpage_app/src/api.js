@@ -11,7 +11,7 @@ export async function searchCardNames(card) {
   console.log(data);
 
   return data.data || [];
-}
+} 
 
 export async function fetchWeather(lat, lon) {
   // Hardcode coordinates or use a simple free API.
