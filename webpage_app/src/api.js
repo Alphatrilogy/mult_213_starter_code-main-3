@@ -1,5 +1,4 @@
-// API function to integrate with Open-Meteo Geocoding and Weather APIs
-// Reference: https://open-meteo.com/
+
 
 export async function autocomplete(card) {
   const res = await fetch(
