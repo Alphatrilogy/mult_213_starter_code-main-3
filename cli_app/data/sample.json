@@ -1,0 +1,10 @@
+{
+    "key": "value",
+    "other_key": "other_value",
+    "some_number": 123,
+    "some_array": [1, 2, 3, 4, 5],
+    "nested_object": {
+        "nested_key": "nested_value"
+    },
+    "boolean_value": true
+}
