@@ -3,9 +3,10 @@ import { autocomplete, searchCards } from "./api.js";
 
 // Grab references to various parts of the HTML page
 const searchForm = document.querySelector("#card-search-form");
-const searchImput = document.querySelector("#search-imput");
+const searchImput = document.querySelector("#searchImput");
 const results = document.querySelector("#results");
-const deckList = document.querySelector("#wdeck-list");
+const deckList = document.querySelector("#deck-list");
+const clear = document.querySelector("#clear");
 
 searchForm.addEventListener("submit", async (e) => {
   e.preventDefault();
@@ -32,31 +33,8 @@ renderMessage(results, `No results found for "${name}".`);
     renderMessage(results, `Error: ${err.message}`);
   }
 });
-
-weatherForm.addEventListener("submit", async (e) => {
-    e.preventDefault();
-
-    const latStr = document.querySelector("#lat").value.trim();
-    const lonStr = document.querySelector("#lon").value.trim();
-
-    if (!latStr || !lonStr) {
-        renderMessage(weatherOutput, "Please provide both latitude and longitude.");
-        return;
-    }
-
-    const lat = parseFloat(latStr);
-    const lon = parseFloat(lonStr);
-    if (Number.isNaN(lat) || Number.isNaN(lon)) {
-        renderMessage(weatherOutput, "Latitude and longitude must be valid numbers.");
-        return;
-    }
-
-    renderMessage(weatherOutput, "Loading Weather Data…");
-
-    try {
-        const weather = await fetchWeather(lat, lon);
-        renderMessage(weatherOutput, `<pre>${JSON.stringify(weather, null, 2)}</pre>`);
-    } catch (err) {
-        renderMessage(weatherOutput, `Error: ${err.message}`);
-    }
+let deck = [];
+clear.addEventListener("click", () => {
+  deck = [];
 });
+
