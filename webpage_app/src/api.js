@@ -13,7 +13,6 @@ export async function autocomplete(card) {
 } 
 
 export async function searchCards(search) {
-  // Hardcode coordinates or use a simple free API.
   const res = await fetch(
     `https://api.scryfall.com/cards/search?q=${search}`
   );

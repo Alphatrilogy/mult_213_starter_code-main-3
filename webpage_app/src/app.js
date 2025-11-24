@@ -1,38 +1,35 @@
 import { renderMessage } from "./dom.js";
-import { searchCity, fetchWeather } from "./api.js";
+import { autocomplete, searchCards } from "./api.js";
 
 // Grab references to various parts of the HTML page
-const cityForm = document.querySelector("#city-form");
-const cityList = document.querySelector("#city-list");
-const weatherForm = document.querySelector("#weather-form");
-const weatherOutput = document.querySelector("#weather-output");
+const searchForm = document.querySelector("#card-search-form");
+const searchImput = document.querySelector("#search-imput");
+const results = document.querySelector("#results");
+const deckList = document.querySelector("#wdeck-list");
 
-cityForm.addEventListener("submit", async (e) => {
+searchForm.addEventListener("submit", async (e) => {
   e.preventDefault();
 
-  const city = document.querySelector("#city").value.trim();
-  if (!city) return;
+  const name = "#searchImput".value.trim();
+  if (!name) return;
 
-  renderMessage(cityList, "Loading…");
+  renderMessage(results, "Loading…");
 
   try {
-    const data = await searchCity(city);
-    if (data.length === 0) {
-        renderMessage(cityList, `No results found for "${city}".`);
+    const cards = await searchcards(name);
+    if (!name || cards.length === 0) {
+        renderMessage(`No results found for "${name}".`);
         return;
     }
-    
-    let message = `Found ${data.length} result(s) for "${city}":`;
-    
-    message += "<ul>";
-    data.forEach((item) => {
-        message += `<li>${item.name}, ${item.country} (Lat: ${item.latitude}, Lon: ${item.longitude})</li>`;
+    let message = `<p>Found ${cards.length} result(s):</p><ul>`;
+    cards.forEach(card => {
+      message += `<li>${card.name}</li>`;
     });
     message += "</ul>";
-    
-    renderMessage(cityList, message);
+
+    renderMessage(results, message);
   } catch (err) {
-    renderMessage(cityList, `Error: ${err.message}`);
+    renderMessage(results, `Error: ${err.message}`);
   }
 });
 
