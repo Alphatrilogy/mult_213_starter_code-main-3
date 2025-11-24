@@ -1,15 +1,15 @@
 
 
-export async function autocomplete(card) {
+export async function randomCard() {
   const res = await fetch(
-    `https://api.scryfall.com/cards/autocomplete?q=${card}`
+    "https://api.scryfall.com/cards/random"
   );
 
   const data = await res.json();
 
   console.log(data);
 
-  return data.data || [];
+  return data;
 } 
 
 export async function searchCards(search) {

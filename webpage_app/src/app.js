@@ -1,5 +1,5 @@
 import { renderMessage } from "./dom.js";
-import { autocomplete, searchCards } from "./api.js";
+import { searchCards } from "./api.js";
 
 // Grab references to various parts of the HTML page
 const searchForm = document.querySelector("#card-search-form");
@@ -14,7 +14,7 @@ searchForm.addEventListener("submit", async (e) => {
 const name = searchImput.value.trim();
   if (!name) return;
 
-  renderMessage(results, "Loading…");
+  renderMessage(results, "searching for cards...");
 
   try {
     const cards = await searchCards(name);
@@ -22,6 +22,7 @@ const name = searchImput.value.trim();
 renderMessage(results, `No results found for "${name}".`);
         return;
     }
+    
     let message = `<p>Found ${cards.length} result(s):</p><ul>`;
     cards.forEach(card => {
       message += `<li>${card.name}</li>`;
