@@ -10,15 +10,15 @@ const deckList = document.querySelector("#wdeck-list");
 searchForm.addEventListener("submit", async (e) => {
   e.preventDefault();
 
-  const name = "#searchImput".value.trim();
+const name = searchImput.value.trim();
   if (!name) return;
 
   renderMessage(results, "Loading…");
 
   try {
-    const cards = await searchcards(name);
-    if (!name || cards.length === 0) {
-        renderMessage(`No results found for "${name}".`);
+    const cards = await searchCards(name);
+    if (!cards || cards.length === 0) {
+renderMessage(results, `No results found for "${name}".`);
         return;
     }
     let message = `<p>Found ${cards.length} result(s):</p><ul>`;
