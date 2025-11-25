@@ -1,4 +1,3 @@
-import { renderMessage } from "./dom.js";
 import { searchCards } from "./api.js";
 
 // Grab references to various parts of the HTML page
@@ -8,34 +7,51 @@ const results = document.querySelector("#results");
 const deckList = document.querySelector("#deck-list");
 const clear = document.querySelector("#clear");
 
+let deck = [];
+
 searchForm.addEventListener("submit", async (e) => {
   e.preventDefault();
 
-const name = searchImput.value.trim();
+  const name = searchImput.value.trim();
   if (!name) return;
 
-  renderMessage(results, "searching for cards...");
+  results.innerHTML = "<p>Searching for cards...</p>";
 
   try {
     const cards = await searchCards(name);
     if (!cards || cards.length === 0) {
-renderMessage(results, `No results found for "${name}".`);
-        return;
+      results.innerHTML = `<p>No results found for "${name}".</p>`;
+      return;
     }
-    
+
     let message = `<p>Found ${cards.length} result(s):</p><ul>`;
-    cards.forEach(card => {
-      message += `<li>${card.name}</li>`;
+    cards.forEach((card, index) => {
+      message += `<li>${card.name} 
+        <button class="add-btn" data-index="${index}">Add to Deck</button>
+      </li>`;
     });
     message += "</ul>";
 
-    renderMessage(results, message);
+    results.innerHTML = message;
+    document.querySelectorAll(".add-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const i = btn.dataset.index;
+        addCardToDeck(cards[i]);
+      });
+    });
+
   } catch (err) {
-    renderMessage(results, `Error: ${err.message}`);
+    results.innerHTML = `<p>Error: ${err.message}</p>`;
   }
 });
-let deck = [];
+function addCardToDeck(card) {
+  deck.push(card);
+
+  const li = document.createElement("li");
+  li.textContent = card.name;
+  deckList.appendChild(li);
+}
 clear.addEventListener("click", () => {
   deck = [];
+  deckList.innerHTML = "";
 });
-
