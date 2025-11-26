@@ -1,4 +1,4 @@
-import { searchCards } from "./api.js";
+import { searchCards, randomCard } from "./api.js";
 
 // Grab references to various parts of the HTML page
 const searchForm = document.querySelector("#card-search-form");
@@ -6,7 +6,8 @@ const searchImput = document.querySelector("#searchImput");
 const results = document.querySelector("#results");
 const deckList = document.querySelector("#deck-list");
 const clear = document.querySelector("#clear");
-
+const randomBtn = document.querySelector("#randomCard");
+const randomOutput = document.querySelector("#randomCardOutput");
 let deck = [];
 
 searchForm.addEventListener("submit", async (e) => {
@@ -54,4 +55,17 @@ function addCardToDeck(card) {
 clear.addEventListener("click", () => {
   deck = [];
   deckList.innerHTML = "";
+});
+randomBtn.addEventListener("click", async () => {
+  randomOutput.innerHTML = "<p>Fetching random card...</p>";
+  try {
+    const card = await randomCard();
+
+    randomOutput.innerHTML = `
+      <h3>${card.name}</h3>
+      <img src="${card.image_uris?.normal}" alt="${card.name}">
+    `;
+  } catch (err) {
+    randomOutput.innerHTML = `<p>Error loading card: ${err.message}</p>`;
+  }
 });

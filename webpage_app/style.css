@@ -34,3 +34,7 @@ fieldset {
     border-radius: .5rem;
     padding: 1rem;
 }
+ img {
+  width: 250px;
+ margin-bottom: 1rem;
+}
