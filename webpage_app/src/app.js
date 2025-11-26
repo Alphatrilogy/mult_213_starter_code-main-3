@@ -24,14 +24,16 @@ searchForm.addEventListener("submit", async (e) => {
       results.innerHTML = `<p>No results found for "${name}".</p>`;
       return;
     }
-
-    let message = `<p>Found ${cards.length} result(s):</p><ul>`;
+    let message = `<p>Found ${cards.length} result(s):</p><div class="grid">`;
     cards.forEach((card, index) => {
-      message += `<li>${card.name} 
-        <button class="add-btn" data-index="${index}">Add to Deck</button>
-      </li>`;
+      message += `
+    <div class="card-item">
+      <img src="${card.image_uris?.normal}" alt="${card.name}">
+      <button class="add-btn" data-index="${index}">Add to Deck</button>
+    </div>
+  `;
     });
-    message += "</ul>";
+    message += "</div>";
 
     results.innerHTML = message;
     document.querySelectorAll(".add-btn").forEach(btn => {

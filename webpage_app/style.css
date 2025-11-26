@@ -3,15 +3,13 @@
 }
 
 .container {
-    max-width: 480px;
+    max-width: 1000px;
     margin: 3rem auto;
     padding: 1rem;
 }
 
 .card {
     padding: 1rem;
-    background: #f1f1f1;
-    border-radius: .5rem;
     margin: 1rem 0;
 }
 
@@ -37,4 +35,34 @@ fieldset {
  img {
   width: 250px;
  margin-bottom: 1rem;
+}
+.card-item {
+  background: rgb(165, 156, 156);
+  padding: 10px;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+.card-item img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+.card-item button {
+  margin-top: 10px;
+  padding: 6px 12px;
+  border: none;
+  background: #333;
+  color: white;
+  border-radius: 6px;
+}
+.card-item button:hover {
+  background: #555;
+}
+.grid {
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-top: 1rem;
 }
