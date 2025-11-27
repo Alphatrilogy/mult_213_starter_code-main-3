@@ -3,7 +3,7 @@
 }
 
 .container {
-    max-width: 1000px;
+    max-width: 100%;
     margin: 3rem auto;
     padding: 1rem;
 }
@@ -28,41 +28,55 @@ fieldset {
     flex-direction: column;
     gap: .5rem;
     margin-bottom: 1rem;
-    border: 1px solid #ccc;
     border-radius: .5rem;
     padding: 1rem;
 }
- img {
-  width: 250px;
- margin-bottom: 1rem;
-}
-.card-item {
-  background: rgb(165, 156, 156);
-  padding: 10px;
-  border-radius: 8px;
-  text-align: center;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-}
-.card-item img {
-  width: 100%;
-  height: auto;
-  border-radius: 8px;
-}
-.card-item button {
-  margin-top: 10px;
-  padding: 6px 12px;
-  border: none;
-  background: #333;
-  color: white;
-  border-radius: 6px;
-}
-.card-item button:hover {
-  background: #555;
-}
-.grid {
-  display: grid;
 
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
-  margin-top: 1rem;
+img {
+    width: 250px;
+    margin-bottom: 1rem;
+}
+
+.card-item {
+    background: rgb(165, 156, 156);
+    padding: 10px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.card-item img {
+    width: 100%;
+    height: auto;
+}
+
+.card-item button {
+    margin-top: 10px;
+    padding: 6px 12px;
+    background: #333;
+    color: white;
+}
+
+.grid {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+#randomCard {
+    margin-bottom: 1.5rem;
+    align-items: center;
+}
+
+#card-search-form {
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+align-items: center;
+}
+
+#results {
+    margin-top: 2rem;
+    text-align: center;
 }
